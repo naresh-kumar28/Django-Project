@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calling student data</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    {% include "header.html" %}
+
+    <div class="p-6">
+        <div class="overflow-x-auto border rounded">
+            <table class="w-full border-collapse text-sm text-left">
+    
+                <!-- Table Header -->
+                <thead class="bg-white border-b">
+                    <tr>
+                        <th class="px-4 py-3 border">#id</th>
+                        <th class="px-4 py-3 border">Name</th>
+                        <th class="px-4 py-3 border">Father</th>
+                        <th class="px-4 py-3 border">School</th>
+                        <th class="px-4 py-3 border">email</th>
+                        <th class="px-4 py-3 border">contact</th>
+                        <th class="px-4 py-3 border">maths</th>
+                        <th class="px-4 py-3 border">sci</th>
+                        <th class="px-4 py-3 border">sst</th>
+                        <th class="px-4 py-3 border">hindi</th>
+                        <th class="px-4 py-3 border">eng</th>
+                        <th class="px-4 py-3 border">total Marks</th>
+                        <th class="px-4 py-3 border text-center">Action</th>
+                    </tr>
+                </thead>
+    
+                <tbody>
+                    {% for item in details %}
+                    <tr class="bg-white hover:bg-gray-50">
+                        <td class="px-4 py-3 border">{{item.id}}</td>
+                        <td class="px-4 py-3 border">{{item.name}}</td>
+                        <td class="px-4 py-3 border">{{item.fathername}}</td>
+                        <td class="px-4 py-3 border">{{item.schoolname}}</td>
+                        <td class="px-4 py-3 border">{{item.email}}</td>
+                        <td class="px-4 py-3 border">{{item.contact}}</td>
+                        <td class="px-4 py-3 border">{{item.math}}</td>
+                        <td class="px-4 py-3 border">{{item.sci}}</td>
+                        <td class="px-4 py-3 border">{{item.sst}}</td>
+                        <td class="px-4 py-3 border">{{item.hindi}}</td>
+                        <td class="px-4 py-3 border">{{item.eng}}</td>
+                        <td class="px-4 py-3 border">{{item.getTotal}}</td>
+    
+                        <td class="px-4 py-3 border text-center space-x-2 whitespace-nowrap ">
+                            <button class="px-3 py-1 bg-blue-100 text-blue-700 rounded text-xs">
+                                View
+                            </button>
+                            <button class="px-3 py-1 bg-green-100 text-green-700 rounded text-xs">
+                                Edit
+                            </button>
+                            <button class="px-3 py-1 bg-red-100 text-red-700 rounded text-xs">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+    
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
