@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>COVID-19 Vaccination Certificate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            background-color: #f3f4f6;
+        }
+
+        .cert-container {
+            width: 800px;
+            margin: 20px auto;
+            margin-bottom: 20px;
+            background: white;
+            border: 1px solid #e5e7eb;
+        }
+
+        .blue-text {
+            color: #1e3a8a;
+        }
+
+        .border-blue {
+            border-bottom: 2px solid #1e3a8a;
+        }
+    </style>
+</head>
+
+<body>
+    {% load static %}
+    {% include "header.html" %}
+
+    <div class="cert-container shadow-2xl">
+        {% for certificate in certificates %}
+        <!-- HEADER -->
+        <div class="text-center mb-8 pt-[25px]">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg"
+                class="h-16 mx-auto mb-2">
+
+            <h2 class="text-sm font-bold text-[#373435] leading-tight">
+                Ministry of Health & Family Welfare <br>
+                Government of India
+            </h2>
+
+            <h1 class="text-2xl font-bold blue-text mt-4">
+                Certificate for COVID-19 Vaccination
+            </h1>
+
+            <p class="text-sm font-semibold blue-text">
+                Issued in India by Ministry of Health & Family Welfare, Govt. of India
+            </p>
+
+            <p class="text-xs font-bold mt-2">
+                Certificate ID
+                <span class="ml-2 font-bold">
+                    {{ certificate.certificate_id }}
+                </span>
+            </p>
+        </div>
+
+        <!-- BENEFICIARY DETAILS -->
+        <div class="mb-6 px-[45px]">
+            <h3 class="blue-text font-bold border-blue inline-block mb-4 pb-1">
+                Beneficiary Details
+            </h3>
+
+            <div class="grid grid-cols-2 gap-y-2 text-sm">
+                <div class="text-gray-600">Beneficiary Name / लाभार्थी का नाम</div>
+                <div class="font-bold">{{ certificate.name }}</div>
+
+                <div class="text-gray-600">Age / उम्र</div>
+                <div class="font-bold">{{ certificate.age }}</div>
+
+                <div class="text-gray-600">Gender / लिंग</div>
+                <div class="font-bold">{{ certificate.gender }}</div>
+
+                <div class="text-gray-600">ID Verified / पहचान पत्र सत्यापित</div>
+                <div class="font-bold">{{ certificate.id_verified }}</div>
+
+                <div class="text-gray-600">Unique Health ID (UHID)</div>
+                <div class="font-bold">{{ certificate.uhid}}</div>
+
+                <div class="text-gray-600">Beneficiary Reference ID</div>
+                <div class="font-bold">{{ certificate.reference_id }}</div>
+
+                <div class="text-gray-600">Vaccination Status/ टीकाकरण की स्थिति</div>
+                <div class="font-bold">{{ certificate.vaccination_status }}</div>
+            </div>
+        </div>
+
+        <!-- VACCINATION DETAILS -->
+        <div class="mb-6 px-[45px]">
+            <h3 class="blue-text font-bold border-blue inline-block mb-4 pb-1">
+                Vaccination Details
+            </h3>
+
+            <div class="grid grid-cols-2 gap-y-2 text-sm">
+                <div class="text-gray-600">Vaccinated By / टीका लगाने वाले का नाम</div>
+                <div class="font-bold">{{ certificate.vaccinated_by }}</div>
+
+                <div class="text-gray-600">Vaccination At / टीकाकरण का स्थान</div>
+                <div class="font-bold">{{ certificate.vaccinated_at }}</div>
+            </div>
+        </div>
+
+        <!-- DOSE TABLE -->
+        <div class="mt-[50px] px-[45px]">
+
+            <!-- TABLE HEADER -->
+            <div class="grid grid-cols-6 gap-6 text-sm text-gray-800 pb-3 border-b border-gray-400">
+                <div>
+                    <p>Dose Number</p>
+                    <p>खुराक की संख्या</p>
+                </div>
+                <div>
+                    <p>Date of Dose</p>
+                    <p>खुराक की तारीख</p>
+                </div>
+                <div>
+                    <p>Vaccine Name</p>
+                    <p>वैक्सीन का नाम</p>
+                </div>
+                <div>
+                    <p>Batch Number</p>
+                    <p>बैच संख्या</p>
+                </div>
+                <div>
+                    <p>Vaccine Type</p>
+                    <p>टीका का प्रकार</p>
+                </div>
+                <div>
+                    <p>Manufacturer</p>
+                    <p>उत्पादक</p>
+                </div>
+            </div>
+
+            <!-- LOOP -->
+
+            <!-- Dose 1 -->
+            <div class="grid grid-cols-6 gap-6 py-5 text-[9px] font-bold">
+                <div>{{ certificate.dose_number1 }}</div>
+                <div>{{ certificate.dose_date1|date:"d M Y" }}</div>
+                <div class="uppercase">{{ certificate.vaccine_name1 }}</div>
+                <div>{{ certificate.batch_number1 }}</div>
+                <div>{{ certificate.vaccine_type1 }}</div>
+                <div>{{ certificate.manufacturer1 }}</div>
+            </div>
+
+            <!-- Dose 2 -->
+            <div class="grid grid-cols-6 gap-6 py-5 text-[9px] font-bold">
+                <div>{{ certificate.dose_number2 }}</div>
+                <div>{{ certificate.dose_date2|date:"d M Y" }}</div>
+                <div class="uppercase">{{ certificate.vaccine_name2 }}</div>
+                <div>{{ certificate.batch_number2 }}</div>
+                <div>{{ certificate.vaccine_type2 }}</div>
+                <div>{{ certificate.manufacturer2 }}</div>
+            </div>
+
+            <!-- Dose 3 -->
+            <div class="grid grid-cols-6 gap-6 py-5 text-[9px] font-bold">
+                <div>{{ certificate.dose_number3 }}</div>
+                <div>{{ certificate.dose_date3|date:"d M Y" }}</div>
+                <div class="uppercase">{{ certificate.vaccine_name3 }}</div>
+                <div>{{ certificate.batch_number3 }}</div>
+                <div>{{ certificate.vaccine_type3 }}</div>
+                <div>{{ certificate.manufacturer3 }}</div>
+            </div>
+            
+        </div>
+        {% endfor %}
+
+        <!-- CERTIFICATE IMAGE -->
+        <div class="mt-6">
+            <img src="{% static 'photo.png' %}" class="w-full object-contain">
+        </div>
+
+    </div>
+
+</body>
+
+</html>

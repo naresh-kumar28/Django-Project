@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin-pannel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-600 min-h-screen">
+
+    {% include "admin/adminHeader.html" %}
+
+    <!-- Manage Products Content -->
+    <div class="bg-slate-600 min-h-screen p-10">
+    
+        <!-- Title Section -->
+        <div class="text-center mb-10">
+            <h1 class="text-4xl font-bold text-white mb-2">
+                Manage Products
+            </h1>
+            <p class="text-gray-300">
+                Here you can add, edit, or delete products.
+            </p>
+        </div>
+    
+        <!-- Table Wrapper -->
+        <div class="bg-slate-700 rounded-xl shadow-lg overflow-hidden">
+    
+            <table class="w-full text-left text-gray-200">
+                <thead class="bg-slate-800 text-white">
+                    <tr>
+                        <th class="px-6 py-4">Id</th>
+                        <th class="px-6 py-4">Name</th>
+                        <th class="px-6 py-4">Category</th>
+                        <th class="px-6 py-4">Price</th>
+                        <th class="px-6 py-4 text-center">Actions</th>
+                    </tr>
+                </thead>
+    
+                <tbody>
+                    
+                    <tr class="border-t border-slate-600 hover:bg-slate-600 transition">
+                        <td class="px-6 py-4">{{product.id}}</td>
+                        <td class="px-6 py-4">{{product.name}}</td>
+                        <td class="px-6 py-4">{{product.category}}</td>
+                        <td class="px-6 py-4">{{product.price}} <del>{{product.discount_price}}</del> </td>
+                        <td class="px-6 py-4 text-center space-x-2">
+                            <button class="bg-blue-600 px-4 py-1 rounded-md text-sm hover:bg-blue-700">
+                                Edit
+                            </button>
+                            <button class="bg-red-600 px-4 py-1 rounded-md text-sm hover:bg-red-700">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+    
+        </div>
+    
+    </div>
+
+</body>
+
+</html>

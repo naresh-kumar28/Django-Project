@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>insert-data</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    {% include "header.html" %}
+
+    <form method="post" class="max-w-3xl mx-auto bg-white shadow-xl p-8 space-y-6 mt-10">
+        {% csrf_token %}
+
+        <!-- Certificate Info -->
+        <h2 class="text-xl font-bold text-blue-900 border-b pb-2">
+            Certificate Details
+        </h2>
+
+        <div class="grid grid-cols-2 gap-4">
+            <input type="text" name="certificate_id" placeholder="Certificate ID" class="border p-2 rounded w-full"
+                required />
+
+            <input type="text" name="reference_id" placeholder="Beneficiary Reference ID"
+                class="border p-2 rounded w-full" />
+        </div>
+
+        <!-- Beneficiary Details -->
+        <h2 class="text-xl font-bold text-blue-900 border-b pb-2">
+            Beneficiary Details
+        </h2>
+
+        <div class="grid grid-cols-2 gap-4">
+            <input type="text" name="name" placeholder="Full Name" class="border p-2 rounded w-full" required />
+
+            <input type="number" name="age" placeholder="Age" class="border p-2 rounded w-full" required />
+
+            <select name="gender" class="border p-2 rounded w-full">
+                <option value="">Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+            </select>
+
+            <input type="text" name="uhid" placeholder="( UHID ) -  68-7375-8841-5961" class="border p-2 rounded w-full" />
+
+            <select onchange="show(this.value)" class="border p-2 rounded w-full">
+                <option value="">Select ID Aadhaar / PAN</option>
+                <option value="adhar">Aadhaar</option>
+                <option value="pan">PAN Card</option>
+            </select>
+
+            <div id="adhar_input" class="hidden">
+                <input type="text" name="id_verified" placeholder="Aadhaar # XXXXXXXX4455"
+                    class="border p-2 rounded w-full" />
+            </div>
+
+            <div id="pan_input" class="hidden">
+                <input type="text" name="pan_verified" placeholder="PAN Card # GFRIT3675F"
+                    class="border p-2 rounded w-full" />
+            </div>
+        </div>
+
+        <!-- Vaccination Status -->
+        <h2 class="text-xl font-bold text-blue-900 border-b pb-2">
+            Vaccination Status
+        </h2>
+
+        <select name="vaccination_status" class="border p-2 rounded w-full">
+            <option value="">Select Vaccination Doses</option>
+            <option>Partially Vaccinated (1 Doses)</option>
+            <option>Fully Vaccinated (2 Doses)</option>
+            <option>Fully Vaccinated (2 Doses) and a Precaution Dosse</option>
+        </select>
+
+        <!-- Vaccination Center -->
+        <h2 class="text-xl font-bold text-blue-900 border-b pb-2">
+            Vaccination Details
+        </h2>
+
+        <div class="grid grid-cols-2 gap-4">
+            <input type="text" name="vaccinated_by" placeholder="Vaccinated By" class="border p-2 rounded w-full" />
+
+            <input type="text" name="vaccinated_at" placeholder="Vaccination Center"
+                class="border p-2 rounded w-full" />
+        </div>
+
+        <!-- Dose Details -->
+        <h2 class="text-xl font-bold text-blue-900 border-b pb-2">
+            Choose Dose Details
+        </h2>
+
+        <select onchange="doseDropDown(this.value)" class="border p-2 rounded w-full">
+            <option value="">Select Doses</option>
+            <option value="1">1/2</option>
+            <option value="2">2/2</option>
+            <option value="3">Precaution dose</option>
+        </select>
+
+        <!-- Dose 1 -->
+        <div class="hidden" id="doseSection1">
+            <h2 class="text-xl font-bold text-blue-900 border-b mb-4 pb-2">
+                Dose 1
+            </h2>
+
+            <div class="grid grid-cols-2 gap-4">
+
+                <select name="dose_number1" class="border p-2 rounded w-full">
+                    <option value="">Select Doses</option>
+                    <option>1/2</option>
+                </select>
+
+                <input type="date" name="dose_date1" class="border p-2 rounded w-full" />
+
+                <select name="vaccine_name1" class="border p-2 rounded w-full">
+                    <option value="">Select Vaccine</option>
+                    <option>COVISHIELD</option>
+                    <option>COVAXIN</option>
+                    <option>CORBEAVAX</option>
+                </select>
+
+                <input type="text" name="batch_number1" placeholder="Batch Number" class="border p-2 rounded w-full" />
+                <select name="vaccine_type1" class="border p-2 rounded w-full">
+                    <option value="">Vaccine Type</option>
+                    <option>COVID-19 vaccine,non-replicating vector</option>
+                    <option>COVID-19 vaccine, inactivated virus</option>
+                    <option>COVID-19 vaccine, virus protein subunit</option>
+                </select>
+
+                <select name="manufacturer1" class="border p-2 rounded w-full">
+                    <option value="">Manufacturer</option>
+                    <option>Serum Institute of India Pvt.Ltd.</option>
+                    <option>Bharat Biotech, India</option>
+                    <option>Biological E. Limited</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Dose 2 -->
+        <div class="hidden" id="doseSection2">
+            <h2 class="text-xl font-bold text-blue-900 border-b mb-4 pb-2">Dose 2</h2>
+            <div class="grid grid-cols-2 gap-4">
+
+                <select name="dose_number2" class="border p-2 rounded w-full">
+                    <option value="">Select Doses</option>
+                    <option>2/2</option>
+                </select>
+
+                <input type="date" name="dose_date2" class="border p-2 rounded w-full" />
+
+                <select name="vaccine_name2" class="border p-2 rounded w-full">
+                    <option value="">Select Vaccine</option>
+                    <option>COVISHIELD</option>
+                    <option>COVAXIN</option>
+                    <option>CORBEAVAX</option>
+                </select>
+
+                <input type="text" name="batch_number2" placeholder="Batch Number" class="border p-2 rounded w-full" />
+                <select name="vaccine_type2" class="border p-2 rounded w-full">
+                    <option value="">Vaccine Type</option>
+                    <option>COVID-19 vaccine,non-replicating vector</option>
+                    <option>COVID-19 vaccine, inactivated virus</option>
+                    <option>COVID-19 vaccine, virus protein subunit</option>
+                </select>
+
+                <select name="manufacturer2" class="border p-2 rounded w-full">
+                    <option value="">Manufacturer</option>
+                    <option>Serum Institute of India Pvt.Ltd.</option>
+                    <option>Bharat Biotech, India</option>
+                    <option>Biological E. Limited</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Dose 3 -->
+        <div class="hidden" id="doseSection3">
+            <h2 class="text-xl font-bold text-blue-900 border-b mb-4 pb-2">Dose 3</h2>
+            <div class="grid grid-cols-2 gap-4">
+
+                <select name="dose_number3" class="border p-2 rounded w-full">
+                    <option value="">Select Doses</option>
+                    <option>Precaution dose</option>
+                </select>
+
+                <input type="date" name="dose_date3" class="border p-2 rounded w-full" />
+
+                <select name="vaccine_name3" class="border p-2 rounded w-full">
+                    <option value="">Select Vaccine</option>
+                    <option>COVISHIELD</option>
+                    <option>COVAXIN</option>
+                    <option>CORBEAVAX</option>
+                </select>
+
+                <input type="text" name="batch_number3" placeholder="Batch Number" class="border p-2 rounded w-full" />
+                <select name="vaccine_type3" class="border p-2 rounded w-full">
+                    <option value="">Vaccine Type</option>
+                    <option>COVID-19 vaccine,non-replicating vector</option>
+                    <option>COVID-19 vaccine, inactivated virus</option>
+                    <option>COVID-19 vaccine, virus protein subunit</option>
+                </select>
+
+                <select name="manufacturer3" class="border p-2 rounded w-full">
+                    <option value="">Manufacturer</option>
+                    <option>Serum Institute of India Pvt.Ltd.</option>
+                    <option>Bharat Biotech, India</option>
+                    <option>Biological E. Limited</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="text-center pt-4">
+            <button type="submit" class="bg-blue-900 text-white px-8 py-2 rounded hover:bg-blue-800">
+                Generate Certificate
+            </button>
+        </div>
+    </form>
+
+    <script>
+        const adhar = document.getElementById("adhar_input");
+        const pan = document.getElementById("pan_input");
+
+        function show(value) {
+            // hide both first
+            adhar.classList.add("hidden");
+            pan.classList.add("hidden");
+
+            // show selected one
+            if (value === "adhar") {
+                adhar.classList.remove("hidden");
+            } else if (value === "pan") {
+                pan.classList.remove("hidden");
+            }
+        }
+
+        // DOSE SECTION
+
+        const doseSection1 = document.getElementById("doseSection1");
+        const doseSection2 = document.getElementById("doseSection2");
+        const doseSection3 = document.getElementById("doseSection3");
+
+        function doseDropDown(value) {
+
+            doseSection1.classList.add("hidden");
+            doseSection2.classList.add("hidden");
+
+            if (value === "1") {
+                doseSection1.classList.remove("hidden");
+            }
+
+            if (value === "2") {
+                doseSection1.classList.remove("hidden");
+                doseSection2.classList.remove("hidden");
+            }
+
+            if (value === "3") {
+                doseSection1.classList.remove("hidden");
+                doseSection2.classList.remove("hidden");
+                doseSection3.classList.remove("hidden");
+            }
+        }
+
+    </script>
+</body>
+
+</html>

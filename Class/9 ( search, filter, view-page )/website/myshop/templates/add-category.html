@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insert-category</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    {%include "header.html" %}
+
+    <!-- Main Layout -->
+    <div class="flex">
+    
+        <!-- Sidebar -->
+        <aside class="w-64 bg-indigo-500 text-white min-h-screen p-5">
+            <h2 class="text-lg font-bold mb-4">Categories</h2>
+            {% for categorie in categories %}
+            <div class="flex flex-col text-md">
+        
+                <a href="" class="block w-full px-4 py-2 hover:bg-white hover:text-indigo-800 transition">
+                    {{categorie.title}}
+                </a>
+        
+            </div>
+            {% endfor %}
+        </aside>
+    
+    
+        <!-- Product Section -->
+        <main class="flex-1 p-10">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="flex flex-col gap-8">
+                    <h1 class="font-bold text-lg text-center">Add Category</h1>
+                    <div class="flex flex-col gap-2">
+                        <label for="" class="font-medium">Category:</label>
+                        <input type="text" name="add_cat" class="border py-1 px-3 rounded-lg" placeholder="insert-category name">
+                    </div>
+                    <input type="submit" value="Save" class="bg-blue-500 text-white rounded-lg px-2 py-1 hover:bg-blue-600">
+                </div>
+                
+            </form>
+        </main>
+    </div>
+
+</body>
+</html>

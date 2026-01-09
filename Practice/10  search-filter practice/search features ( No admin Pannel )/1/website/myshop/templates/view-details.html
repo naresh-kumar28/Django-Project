@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce</title>
+</head>
+
+<body>
+    {%include "header.html" %}
+
+    <!-- Main Layout -->
+    <div class="flex">
+
+        <!-- Sidebar -->
+        <aside class="w-64 bg-indigo-500 text-white min-h-screen p-5">
+            <h2 class="text-lg font-bold mb-4">Categories ({{categories|length}})</h2>
+
+            <a href="\" class="block w-full px-4 py-2 hover:bg-white hover:text-indigo-800 transition">
+                All Products
+            </a>
+            {% for categorie in categories %}
+            <div class="flex flex-col text-md">
+
+                <a href="?cat_id={{categorie.id}}"
+                    class="block w-full px-4 py-2 hover:bg-white hover:text-indigo-800 transition">
+                    {{categorie.title}}
+                </a>
+
+            </div>
+            {% endfor %}
+        </aside>
+
+
+        <!-- Product Section -->
+        <main class="flex-1 p-10">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-7">
+                
+                <!-- Product Card -->
+                <div class="bg-white rounded-xl shadow p-5 w-64">
+                    <img src="{{product.image.url}}" class="h-56 mx-auto object-contain" />
+                    <h3 class="mt-4 font-semibold">{{product.name}}</h3>
+                    <p class="text-sm text-gray-500">{{product.description}}</p>
+                    <p class="mt-2">
+                        <span class="text-indigo-600 font-bold">₹{{product.price|floatformat:0}}</span>
+                        <span class="line-through text-gray-400 ml-2">₹{{product.discount_price|floatformat:0}}</span>
+                    </p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    {%include "footer.html" %}
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+
+    {% include "header.html" %}
+
+    <div class="max-w-7xl mx-auto px-6 py-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+    
+            {% for product in products %}
+            <div class="group bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition duration-500">
+    
+                <!-- Image Section -->
+                <div
+                    class="relative h-52 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center overflow-hidden">
+    
+                    <!-- Badge -->
+                    <span class="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-md text-xs font-semibold px-3 py-1 rounded-full shadow">
+                        NEW
+                    </span>
+    
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}"
+                        class="w-full h-full object-contain p-6 transition-transform duration-500 group-hover:scale-110">
+                </div>
+    
+                <!-- Content -->
+                <div class="p-5 flex flex-col gap-2">
+                    <h3 class="text-lg font-semibold text-gray-900 truncate">
+                        {{ product.name }}
+                    </h3>
+    
+                    <p class="text-sm text-gray-500 line-clamp-2">
+                        {{ product.description }}
+                    </p>
+    
+                    <div class="flex items-center justify-between mt-3">
+                        <span
+                            class="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                            ₹{{ product.price }}
+                        </span>
+    
+                        <button
+                            class="bg-gray-900 text-white text-sm px-4 py-2 rounded-full hover:bg-indigo-600 transition">
+                            Buy
+                        </button>
+                    </div>
+                </div>
+    
+            </div>
+            {% endfor %}
+    
+        </div>
+    </div>
+
+
+</body>
+
+</html>

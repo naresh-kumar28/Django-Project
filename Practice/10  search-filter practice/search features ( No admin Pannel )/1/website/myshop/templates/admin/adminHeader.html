@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin-pannel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <header class="bg-slate-900 text-white px-12 py-4 flex justify-between items-center">
+        <h1 class="text-xl font-bold">EShop | Admin Pannel</h1>
+
+        <nav class="space-x-6 font-medium">
+            <a href="/" class="hover:underline">Logout</a>
+        </nav>
+    </header>
+
+    <div class="flex flex-1 text-white bg-slate-800 justify-center py-3 gap-5 font-medium">
+        <a href="{% url 'admin-dashboard' %}" class="hover:bg-indigo-700 px-2 py-1 rounded">Dashboard</a>
+        <a href="{% url 'manage-product' %}" class="hover:bg-indigo-700 px-2 py-1 rounded">Manage Products</a>
+        <a href="{% url 'manage-category' %}" class="hover:bg-indigo-700 px-2 py-1 rounded">Manage Category</a>
+
+    </div>
+</body>
+
+</html>

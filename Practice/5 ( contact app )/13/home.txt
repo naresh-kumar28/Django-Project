@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="flex flex-1 bg-rose-500 px-[10%] py-3">
+        <h1 class="text-white font-medium">Contact List App</h1>
+    </div>
+
+    <div class="flex flex-1 gap-5 px-[10%] mt-10">
+        <div class="w-3/12">
+            <form action="" method="post">
+
+                <div class="mb-3 flex flex-col">
+                    <label for="">Name</label>
+                    <input type="text" class="border w-full px-3 py-2 rounded" name="name">
+                </div>
+
+                <div class="mb-3 flex flex-col">
+                    <label for="">contact</label>
+                    <input type="text" class="border w-full px-3 py-2 rounded" name="contact">
+                </div>
+
+                <div class="mb-3 flex flex-col">
+                    <input type="submit" class="w-full bg-rose-500 text-white px-3 py-2" value="Save">
+                </div>
+            </form>
+
+
+        </div>
+
+        <div class="w-9/12">
+            <table class="w-full">
+                <thead>
+                    <tr>
+                        <td class="p-3 border">Id</td>
+                        <td class="p-3 border">Name</td>
+                        <td class="p-3 border">Contact</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td class="p-3 border"></td>
+                        <td class="p-3 border"></td>
+                        <td class="p-3 border"></td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+</body>
+
+</html>
